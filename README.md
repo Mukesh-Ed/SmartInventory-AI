@@ -180,4 +180,4 @@ Passionate about building real-world AI and Data Analytics solutions that solve 
 
 # 📜 License
 
-This project is licensed under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
