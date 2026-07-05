@@ -17,24 +17,24 @@
 
 # 📑 Table of Contents
 
-- Project Overview
-- Problem Statement
-- Solution
-- Key Features
-- System Architecture
-- Workflow
-- AI Pipeline
-- Technology Stack
-- Dashboard Modules
-- Dataset
-- Project Structure
-- Installation
-- Deployment
-- Results
-- Future Enhancements
-- Author
-- License
-
+-   [📌 Project Overview](#-project-overview)
+-   [🎯 Problem Statement](#-problem-statement)
+-   [❌ Why Existing Systems Fail](#-why-existing-systems-fail)
+-   [💡 Proposed Solution](#-proposed-solution)
+-   [✨ Key Features](#-key-features)
+-   [🏗️ System Architecture](#️-system-architecture)
+-   [🔄 Workflow](#-workflow)
+-   [🤖 AI Pipeline](#-ai-pipeline)
+-   [🛠️ Technology Stack](#️-technology-stack)
+-   [📊 Dashboard Modules](#-dashboard-modules)
+-   [📂 Dataset](#-dataset)
+-   [📁 Project Structure](#-project-structure)
+-   [⚙️ Installation](#️-installation)
+-   [🚀 Deployment](#-deployment)
+-   [📈 Results](#-results)
+-   [🔮 Future Enhancements](#-future-enhancements)
+-   [👨‍💻 Author](#-author)
+-   [📜 License](#-license)
 ---
 
 # 📌 Project Overview
