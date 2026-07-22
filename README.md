@@ -1,220 +1,183 @@
-# SmartInventory AI
+# 🚀 SmartInventory AI
 
-## Universal dataset support
+# AI-Powered Revenue Recovery & Inventory Intelligence System
 
-Uploaded CSV/XLSX files now pass through `src/schema_adapter.py` before the
-existing workflow. The adapter maps industry-specific column names into a
-canonical inventory schema using exact aliases, fuzzy matching and optional
-Gemini mapping.
+### **Predict Early • Recover Revenue • Maximize Profit**
 
-Recommended source attributes:
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![SQL](https://img.shields.io/badge/SQL-Database-orange)
+![PowerBI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow?logo=powerbi)
+![Excel](https://img.shields.io/badge/Excel-Dashboard-green?logo=microsoftexcel)
+![Streamlit](https://img.shields.io/badge/Streamlit-Web%20App-red?logo=streamlit)
+![Scikit-learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?logo=scikitlearn)
 
-- Product ID/SKU and product name
-- Category, brand and supplier
-- Current stock and reorder point
-- Purchase/cost price and selling price
-- Daily/monthly sales or demand
-- Expiry date and batch/lot number
-- Warehouse/store/location
-- Supplier lead time
-
-The upload page displays compatibility, mapped/derived/defaulted fields and
-supported analyses. When core fields are absent, the pipeline-safe defaults are
-explicitly reported and financial outputs must not be interpreted as factual.
-
-## Gemini business assistant
-
-The app loads Gemini only from the root `.env` file. Open `.env`, paste your
-key after the equals sign, save, and restart Streamlit:
-
-```env
-GEMINI_API_KEY=paste_your_real_key_here
-GEMINI_MODEL=gemini-3.1-flash-lite
-```
-
-The API key is intentionally not displayed or accepted in the sidebar. The AI
-Business Assistant receives a compact context containing the
-uploaded schema, top risk products, computed KPIs and recommendations, plus the
-recent conversation. It can answer follow-up questions without repeating the
-same generic summary and never invents company-specific numbers.
-
-## Login and startup
-
-Default local login values are stored in `.env` and should be changed before
-deployment:
-
-```env
-APP_USERNAME=admin
-APP_PASSWORD=ChangeMe123!
-```
-
-Windows PowerShell:
-
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m streamlit run streamlit/app.py
-```
-
-## Business KPI definitions
-
-- Revenue at Risk: selling value of stock predicted as High or Medium expiry risk.
-- Expected Recovery: expiry-risk value remaining after the recommended markdown
-  (60% for High risk, 80% for Medium risk), capped at Revenue at Risk.
-- Waste Reduction Rate: Expected Recovery divided by Revenue at Risk.
-- Inventory Health: 0–100 model-derived score based on stock status, expiry risk
-  and inventory turnover.
-
-### AI-Powered Revenue Recovery and Inventory Intelligence System
-
-SmartInventory AI is an enterprise-grade **Decision Support System (DSS)** designed to protect retail, grocery, and pharmaceutical supply chains from revenue decay. The platform automates data engineering pipelines, runs machine learning classifiers and regressors, evaluates capital risks, generates strategic business decisions, and updates dashboard systems.
+> **An AI-powered inventory intelligence platform that predicts product expiry, forecasts demand, estimates revenue at risk, and recommends proactive business actions to reduce waste, recover revenue, and maximize profitability.**
 
 ---
 
-## 🛠️ Project Workflow
+# 📑 Table of Contents
 
-```text
-       Raw Dataset
-            │
-            ▼
-      Data Cleaning (data_cleaning.py)
-            │
-            ▼
-      Cleaned Dataset (SmartInventory_AI_Cleaned_Dataset.csv)
-            │
-            ▼
-     Feature Engineering (feature_engineering.py)
-            │
-            ▼
-      ML-Ready Dataset (SmartInventory_AI_Feature_Engineered.csv)
-            │
-            ▼
-    ┌───────┴──────────────────────────┐
-    ▼                                  ▼
-EDA Visualizations (eda.py)     Model Training (train_models.py)
-                                       │
-                                       ▼
-                               Save Models (.pkl)
-                                       │
-                                       ▼
-                              Predict (prediction.py)
-                                       │
-                                       ▼
-                         AI Recommendation Engine (recommendation_engine.py)
-                                       │
-                                       ▼
-                           Store Results (database.py)
-                                       │
-                                       ▼
-                       ┌───────────────┼───────────────┐
-                       ▼               ▼               ▼
-                 Excel Report    Power BI Visuals  Streamlit UI
-```
-
+-   [📌 Project Overview](#-project-overview)
+-   [🎯 Problem Statement](#-problem-statement)
+-   [❌ Why Existing Systems Fail](#-why-existing-systems-fail)
+-   [💡 Proposed Solution](#-proposed-solution)
+-   [✨ Key Features](#-key-features)
+-   [🏗️ System Architecture](#️-system-architecture)
+-   [🔄 Workflow](#-workflow)
+-   [🤖 AI Pipeline](#-ai-pipeline)
+-   [🛠️ Technology Stack](#️-technology-stack)
+-   [📊 Dashboard Modules](#-dashboard-modules)
+-   [📂 Dataset](#-dataset)
+-   [📁 Project Structure](#-project-structure)
+-   [⚙️ Installation](#️-installation)
+-   [🚀 Deployment](#-deployment)
+-   [📈 Results](#-results)
+-   [🔮 Future Enhancements](#-future-enhancements)
+-   [👨‍💻 Author](#-author)
+-   [📜 License](#-license)
 ---
 
-## 📂 Folder Structure
+# 📌 Project Overview
+
+SmartInventory AI is an enterprise-grade inventory analytics platform designed for supermarkets, bakeries, restaurants, retail stores, warehouses, and manufacturing industries. It combines Data Analytics, Machine Learning, SQL, Excel, Power BI, and Streamlit to transform raw inventory data into actionable business insights.
+
+# 🎯 Problem Statement
+
+Organizations lose significant revenue because of product expiry, overstocking, inaccurate demand forecasting, and delayed inventory decisions. Traditional inventory systems monitor stock levels but fail to provide predictive intelligence for business optimization.
+
+# 💡 Solution
+
+- Predict expiry risks up to 14 days in advance
+- Forecast product demand
+- Estimate revenue at risk
+- Recommend dynamic discount strategies
+- Suggest inventory transfers
+- Support executive decision-making with interactive dashboards
+
+# ✨ Key Features
+
+- Inventory Intelligence
+- Expiry Prediction
+- Demand Forecasting
+- Revenue Recovery Analytics
+- AI Recommendation Engine
+- Executive KPI Dashboard
+- Store Performance Analysis
+
+# 🏗️ System Architecture
 
 ```text
-Teamproject/
-│
+Inventory Data
+      │
+      ▼
+Data Cleaning
+      ▼
+Feature Engineering
+      ▼
+Machine Learning Models
+      ▼
+AI Recommendation Engine
+      ▼
+Interactive Dashboards
+      ▼
+Business Decision Support
+```
+
+# 🔄 Workflow
+
+Collect Data → Data Cleaning → EDA → Feature Engineering → Model Training → Prediction → Recommendations → Power BI / Streamlit Dashboard
+
+# 🤖 AI Pipeline
+
+- Data Preprocessing
+- Feature Engineering
+- Expiry Prediction
+- Demand Forecasting
+- Revenue Risk Analysis
+- AI Recommendation Engine
+- Dashboard Visualization
+
+# 🛠️ Technology Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Language | Python |
+| Database | SQL (MySQL/PostgreSQL) |
+| Analytics | Excel, Pandas, NumPy |
+| Visualization | Power BI, Plotly, Matplotlib |
+| Machine Learning | Scikit-learn, XGBoost |
+| Web App | Streamlit |
+| Version Control | Git & GitHub |
+| IDE | VS Code, Jupyter Notebook |
+
+# 📂 Project Structure
+
+```text
+SmartInventory-AI/
 ├── data/
-│   ├── raw/                      # Raw dataset input
-│   ├── cleaned/                  # Cleaned, standardized dataset
-│   └── processed/                # Feature augmented & predictions files
-│
-├── models/                       # Serialized machine learning models (.pkl)
-│
-├── reports/
-│   └── figures/                  # Saved analytical visualizations
-│
-├── dashboards/
-│   ├── excel/                    # Programmatically generated Excel reports
-│   └── powerbi/                  # Power BI layouts and DAX specifications
-│
-├── src/                          # Back-end modules
-│   ├── __init__.py
-│   ├── generate_synthetic_data.py # Prepopulate mock raw datasets
-│   ├── data_cleaning.py          # Duplicates & Null remediation pipeline
-│   ├── feature_engineering.py     # Pareto ABC and health score compiler
-│   ├── eda.py                    # Visual analytics generator
-│   ├── train_models.py           # ML training script
-│   ├── prediction.py             # Inference pipeline
-│   ├── recommendation_engine.py  # Strategic business recommendation builder
-│   ├── database.py               # SQL database connection schema
-│   └── generate_excel_dashboard.py # Programmatic Excel dashboard builder
-│
-├── streamlit/
-│   └── app.py                    # Streamlit web application
-│
-├── docs/                         # Project documentation
-│
-├── requirements.txt              # Environment dependencies
-├── .gitignore                    # Version control exclusions
-└── README.md                     # Project documentation
+├── notebooks/
+├── sql/
+├── powerbi/
+├── streamlit_app/
+├── models/
+├── screenshots/
+├── requirements.txt
+└── README.md
 ```
 
----
+# ⚙️ Installation
 
-## 🚀 Setup & Execution Instructions
-
-### 1. Prerequisites
-Ensure you have Python 3.10+ installed on your system.
-
-### 2. Environment Setup
-Install the required packages in your local Python environment:
 ```bash
+git clone https://github.com/Mukesh-Ed/SmartInventory-AI.git
+cd SmartInventory-AI
 pip install -r requirements.txt
+streamlit run app.py
 ```
 
-### 3. Database Configurations
-By default, the database connector module (`src/database.py`) runs on a local **SQLite** server instance (`smart_inventory.db` created in the project root) for seamless, zero-config final-year demonstrations.
+# 🚀 Deployment
 
-To connect the application to a production **MySQL** database server, configure the environment variable before execution:
-* **Windows (PowerShell)**:
-  ```powershell
-  $env:MYSQL_DATABASE_URL="mysql+mysqlconnector://<username>:<password>@<host>:<port>/<db_name>"
-  ```
-* **Linux/macOS**:
-  ```bash
-  export MYSQL_DATABASE_URL="mysql+mysqlconnector://<username>:<password>@<host>:<port>/<db_name>"
-  ```
+- Streamlit Community Cloud
+- GitHub
+- Azure / AWS (Future)
 
-### 4. Running the Streamlit Application
-Launch the Streamlit web application interface:
-```bash
-streamlit run streamlit/app.py
-```
+# 📈 Results
 
----
+- Reduced expiry losses
+- Better inventory optimization
+- Accurate demand forecasting
+- Revenue recovery insights
+- Interactive business dashboards
 
-## 🤖 Machine Learning Modules
+# 🔮 Future Enhancements
 
-The system trains and utilizes four separate machine learning models to analyze different aspects of the inventory:
+- IoT Integration
+- WhatsApp Notifications
+- Mobile Application
+- GenAI Business Assistant
+- Cloud-native Deployment
 
-1. **Expiry Risk Classifier (Random Forest)**:
-   * **Target**: Expiry Risk (`High`, `Medium`, `Low`, `None`).
-   * **Purpose**: Identifies decaying stock groups by evaluating costs, selling prices, categories, and inventory turnover levels.
-2. **Demand Forecast (XGBoost Regressor)**:
-   * **Target**: `Sales_Velocity` (Daily units sales).
-   * **Purpose**: Models non-linear patterns of product sales velocities based on category, price thresholds, and current stock sizes.
-3. **Revenue Forecast (Linear Regression)**:
-   * **Target**: `Revenue` ($).
-   * **Purpose**: Projects future revenue potential by mapping cost-to-sell ratios and sales velocities.
-4. **Inventory Segmentation (K-Means Clustering)**:
-   * **Purpose**: Segments products into performance clusters (Fast Moving High Value, Slow Moving High Value, Fast Moving Low Value, Dead Stock) based on turnover, profit margins, and stock value.
+# 👨‍💻 Author
 
----
+<div align="center">
 
-## 💡 AI Recommendation Engine
+## **Mukesh N**
 
-Rather than simply predicting values, the engine applies model outputs to generate business-ready recommendations:
+**B.Sc. Computer Science**
 
-* **Discount Recommendation**: Applies calculated markdowns (e.g., 20% or 40%) for products near expiry to accelerate demand velocity and prevent total cost write-off.
-* **Transfer Recommendation**: Recommends transferring stock from overstocked locations to other regions with higher demand margins to save carrying costs.
-* **Reorder Recommendation**: Alerts procurement when stock is below the minimum threshold and automatically projects the optimal restocking volume.
-* **Overstock Recommendation**: Identifies overstock issues and recommends clearance sales to free up tied-up capital.
-* **Supplier Recommendation**: Highlights lead time review plans for suppliers of high-velocity, low-stock products.
-* **Purchase Planning Recommendation**: Advises establishing bulk contracts for high-demand products to optimize unit costs.
+**Aspiring Data Analyst | Python Developer | AI & Data Analytics Enthusiast**
+
+Passionate about building real-world AI and Data Analytics solutions that solve business problems using Python, SQL, Power BI, Excel, Machine Learning, and Streamlit.
+
+<br>
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mukesh-Ed)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mukesh-ms-807291ms)
+
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:nmukeshbsc09@gmail.com)
+
+</div>
+
+# 📜 License
+
+This project is open source and available under the [MIT License](LICENSE).
